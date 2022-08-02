@@ -1,4 +1,5 @@
 using Microsoft.EntityFrameworkCore;
+using RealEstateSystem.Models;
 
 namespace RealEstateSystem.Data;
 
@@ -8,9 +9,14 @@ public class RealEstateDbContext : DbContext
         :base(options)
     {
     }
+    
+    public DbSet<PropertyEstate> PropertyEstates { get; set; }
+
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
+        builder.Entity<PropertyEstate>().HasKey(e => e.Id);
+        
         base.OnModelCreating(builder);
     }
 }
